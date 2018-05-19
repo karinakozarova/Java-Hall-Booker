@@ -18,7 +18,7 @@ CREATE TABLE RentPeriod(
 http://webarchive.nationalarchives.gov.uk/20100407173424/http://www.cabinetoffice.gov.uk/govtalk/schemasstandards/e-gif/datastandards.aspx
 suggests 35 characters for each of Given Name and Family Name
 */
-CREATE TABLE BuyerId(
+CREATE TABLE Buyer(
 	Id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	FirstName VARCHAR(35),
 	LastName VARCHAR(35)
