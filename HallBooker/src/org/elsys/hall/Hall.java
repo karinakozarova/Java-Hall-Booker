@@ -1,6 +1,7 @@
+package org.elsys.hall;
 
-public class Hall {
-	
+public class Hall 
+{
 	public Hall() {
 		// TODO Auto-generated constructor stub
 	}
