@@ -8,7 +8,8 @@ public class MainClass
 	{
 		if(input == 1) 
 		{
-			System.out.println("You selected: Add your hall");			
+			System.out.println("You selected: Add your hall");	
+			Hall h = new Hall();
 		} 
 		else if(input == 2) 
 		{

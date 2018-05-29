@@ -4,30 +4,23 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.mysql.cj.xdevapi.Statement;
-
 public class Hall 
 {
 	Connection conn = null;
 	public Hall() {
         try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        try {
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn =
-               DriverManager.getConnection("jdbc:mysql://localhost/test?" +
-                                           "user=root&password=root");
+               DriverManager.getConnection("jdbc:mysql://localhost/test?user=root&password=1303&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false");
             // TODO create db here
 			java.sql.Statement query = conn.createStatement();
-	        //query.execute( “ALTER TABLE Subjects ADD COLUMN Code VARCHAR(10)” );
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
+		}catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			System.out.println("Catching");
+			e.printStackTrace();
 		}
 	}
 		
