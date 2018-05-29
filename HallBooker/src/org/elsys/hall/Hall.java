@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.mysql.cj.xdevapi.Statement;
+
 public class Hall 
 {
 	Connection conn = null;
@@ -19,15 +21,14 @@ public class Hall
             conn =
                DriverManager.getConnection("jdbc:mysql://localhost/test?" +
                                            "user=root&password=root");
-
             // TODO create db here
-           
-        } catch (SQLException ex) {
-            // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
+			java.sql.Statement query = conn.createStatement();
+	        //query.execute( “ALTER TABLE Subjects ADD COLUMN Code VARCHAR(10)” );
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
-        }
+		}
 	}
 		
 	/*
