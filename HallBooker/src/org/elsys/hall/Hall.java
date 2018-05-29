@@ -1,11 +1,36 @@
 package org.elsys.hall;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Hall 
 {
+	Connection conn = null;
 	public Hall() {
-		// TODO Auto-generated constructor stub
+        try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        try {
+            conn =
+               DriverManager.getConnection("jdbc:mysql://localhost/test?" +
+                                           "user=root&password=root");
+
+            // TODO create db here
+           
+        } catch (SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
 	}
 		
+	/*
 	// read 
 	private Integer getId() {
 		return null;
@@ -68,5 +93,6 @@ public class Hall
 
 		
 	}
+	*/
 	
 }
