@@ -82,7 +82,4 @@ public class Hall {
 		HallsStatistics.deleteHallByName(conn,hallName);
 	}
 
-
-
-
 }
