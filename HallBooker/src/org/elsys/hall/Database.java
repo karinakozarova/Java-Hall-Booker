@@ -15,14 +15,16 @@ public class Database {
 
 			java.sql.Statement query = conn.createStatement();
 
-			query.execute("DROP DATABASE IF EXISTS halls\n");
-			query.execute("CREATE DATABASE halls");
+			query.execute("	DROP DATABASE IF EXISTS HallBooker;\n" + 
+					"\n");
+			query.execute("CREATE DATABASE HallBooker");
 
-			query.execute("DROP TABLE IF EXISTS HallLocation\n");
-			query.execute("CREATE TABLE HallLocation(\n" + 
-					"	Id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" + 
-					"	LocationAdress VARCHAR(1000)\n" + 
-					");");
+			query.execute("DROP TABLE IF EXISTS Location\n");
+			query.execute("	CREATE TABLE Location(\n" + 
+					"		Id INTEGER NOT NULL,\n" + 
+					"		Address VARCHAR(1000),\n" + 
+					"	    PRIMARY KEY(Id)\n" + 
+					"	);\n");
 
 			query.execute("DROP TABLE IF EXISTS RentPeriod\n");
 			query.execute("\n" + 
@@ -48,11 +50,10 @@ public class Database {
 			States.addStates(conn);
 
 			query.execute("DROP TABLE IF EXISTS State\n");
-			query.execute("CREATE TABLE State(\n" + 
-					"	Id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" + 
-					"	StatesId INTEGER NOT NULL,\n" + 
-					"    BuyerId INTEGER\n" + 
-					");\n");
+			query.execute("	CREATE TABLE State(\n" + 
+					"		Id INTEGER NOT NULL,\n" + 
+					"		StateName VARCHAR(35),\n" + 
+					"	    PRIMARY KEY(Id));\n");
 
 			query.execute("DROP TABLE IF EXISTS HallState\n");
 			query.execute("CREATE TABLE HallState(\n" + 
@@ -60,7 +61,7 @@ public class Database {
 					"	StateId INTEGER NOT NULL\n" + 
 					");");
 
-			query.execute("DROP TABLE IF EXISTS Halls\n");
+			query.execute("DROP TABLE IF EXISTS Hall\n");
 			query.execute("CREATE TABLE Hall(\n" + 
 					"	Id INTEGER NOT NULL,\n" + 
 					"	Name VARCHAR(250),\n" + 
@@ -69,8 +70,30 @@ public class Database {
 					"    LocationId INTEGER,\n" + 
 					"    StateId INTEGER,\n" + 
 					"    PRIMARY KEY(Id)\n" + 
-					");\n" + 
-					"");
+					");\n");
+			
+			query.execute("DROP TABLE IF EXISTS HallUser\n");
+			query.execute("	CREATE TABLE HallUser(\n" + 
+					"		Id INTEGER NOT NULL,\n" + 
+					"		HallId INTEGER NOT NULL,\n" + 
+					"		UserId INTEGER NOT NULL,\n" + 
+					"	    PRIMARY KEY(Id)\n" + 
+					"	);");
+			query.execute("DROP TABLE IF EXISTS User\n");
+			query.execute("	CREATE TABLE User(\n" + 
+					"		Id INTEGER NOT NULL,\n" + 
+					"		FirstName VARCHAR(35),\n" + 
+					"		LastName VARCHAR(35),\n" + 
+					"	    PRIMARY KEY(Id)\n" + 
+					"	);");
+
+			query.execute("	CREATE TABLE Rented(\n" + 
+					"		Id INTEGER NOT NULL,\n" + 
+					"		HallId INTEGER NOT NULL,\n" + 
+					"		FromDate DATETIME NOT NULL,\n" + 
+					"		UntilDate DATETIME NOT NULL,\n" + 
+					"	    PRIMARY KEY (Id)\n" + 
+					"	);");
 		} catch (SQLException ex) {
 			OutputException.sqlErrorInfo(ex);
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
