@@ -129,12 +129,16 @@ INSERT INTO Rented VALUES(3, 2, '2018-01-01', '2018-12-25');
 # 1.Show Halls and their RentPrice
 
 # 2.Show Free Halls
+SELECT Name FROM Hall
+WHERE StateId = 1;
 
 # 3.Show Halls with BuyPrice > 3000
 SELECT Name, BuyPrice FROM Hall
 WHERE BuyPrice > 3000;
 
 # 4.Show Halls and their Location
+SELECT h.Name, l.Address FROM Hall h
+INNER JOIN Location l ON h.LocationId = l.Id;
 
 # 5.Show average RentPice of Halls in Mladost
 
@@ -146,6 +150,9 @@ INNER JOIN State s ON h.StateId = s.Id;
 # 7.Show all Halls that have been boughtS
 
 # 8.Show count of all Halls that have been rented
+SELECT COUNT(h.Id) FROM Hall h
+INNER JOIN State s ON h.StateID = s.Id
+WHERE s.StateName = 'Rented';
 
 # 9.Show Location of all Free Halls
 SELECT l.Address FROM Hall h
@@ -154,6 +161,9 @@ INNER JOIN State s ON h.StateId = s.Id
 WHERE s.StateName = 'Free';
 
 # 10.Show count of all Users for each Hall
+SELECT h.Name, COUNT(hu.UserId) FROM Hall h
+RIGHT JOIN HallUser hu ON h.Id = hu.HallId
+GROUP BY h.Name;
 
 # 11.Show count of all Halls for each User
 
@@ -165,6 +175,11 @@ LEFT JOIN User u ON u.Id = hu.UserId;
 # 13.Show all Halls rented by Momchil
 
 # 14.Show all halls that have been bought and who bought them
+SELECT h.Name, u.FirstName FROM Hall h
+RIGHT JOIN HallUser hu ON h.Id = hu.HallId
+LEFT JOIN User u ON u.Id = hu.UserId
+INNER JOIN State s ON s.Id = h.StateId
+WHERE s.StateName = 'Bought';
 
 # 15.Show all rented Halls and when they were rented
 SELECT h.Name, r.FromDate FROM Hall h
@@ -173,6 +188,10 @@ INNER JOIN Rented r ON r.HallId = h.Id
 WHERE s.StateName = 'Rented';
 
 # 16.Show all Halls rented until after 2018-05-31
+SELECT h.Name, r.UntilDate FROM Hall h
+INNER JOIN State s ON s.Id = h.StateId
+INNER JOIN Rented r ON r.HallId = h.Id
+WHERE r.UntilDate > '2018-05-31';
 
 # 17.Show count of rented Halls for each User
 
