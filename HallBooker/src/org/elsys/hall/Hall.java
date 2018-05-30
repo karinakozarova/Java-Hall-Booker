@@ -22,6 +22,9 @@ public class Hall
 		connectToDatabase();
 	}
 	
+	public void createHall(String hallname,Double rentPrice,Double buyPrice,String location,String state) {
+		//TODO implement this
+	}
 	public void createDatabaseTables() {
 		Database.initializeDatabase(); // creates all the tables
 	}
@@ -33,5 +36,8 @@ public class Hall
 		HallsStatistics.showFreeHalls(conn);
 	}
 	
+	public void deleteHallByName(String hallName) {
+		HallsStatistics.deleteHallByName(conn,hallName);
+	}
 
 }

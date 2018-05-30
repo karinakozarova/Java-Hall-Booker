@@ -86,7 +86,8 @@ public class Database {
 					"		LastName VARCHAR(35),\n" + 
 					"	    PRIMARY KEY(Id)\n" + 
 					"	);");
-
+			
+			query.execute("DROP TABLE IF EXISTS Rented\n");
 			query.execute("	CREATE TABLE Rented(\n" + 
 					"		Id INTEGER NOT NULL,\n" + 
 					"		HallId INTEGER NOT NULL,\n" + 

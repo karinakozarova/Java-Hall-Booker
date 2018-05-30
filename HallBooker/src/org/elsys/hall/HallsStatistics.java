@@ -21,5 +21,14 @@ public class HallsStatistics {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
-
+	
+	public static void deleteHallByName(Connection conn,String hallName) {
+		try {
+			PreparedStatement query = conn.prepareStatement("Delete from Hall where Name = ?");
+			query.setString(1, hallName);
+			query.executeUpdate();
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}	
+	}
 }
