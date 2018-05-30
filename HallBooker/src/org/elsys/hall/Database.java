@@ -61,13 +61,16 @@ public class Database {
 					");");
 
 			query.execute("DROP TABLE IF EXISTS Halls\n");
-			query.execute("CREATE TABLE Halls(\n" + 
-					"	Id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" + 
-					"	FirstName VARCHAR(250),\n" + 
-					"	RentPrice Double,\n" + 
-					"    BuyPrice Double,\n" + 
-					"    LocationId Integer\n" + 
-					");");
+			query.execute("CREATE TABLE Hall(\n" + 
+					"	Id INTEGER NOT NULL,\n" + 
+					"	Name VARCHAR(250),\n" + 
+					"	RentPrice DOUBLE,\n" + 
+					"    BuyPrice DOUBLE,\n" + 
+					"    LocationId INTEGER,\n" + 
+					"    StateId INTEGER,\n" + 
+					"    PRIMARY KEY(Id)\n" + 
+					");\n" + 
+					"");
 		} catch (SQLException ex) {
 			OutputException.sqlErrorInfo(ex);
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {

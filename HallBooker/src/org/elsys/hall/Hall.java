@@ -29,6 +29,10 @@ public class Hall
 	public void printHallStates() {
 		 States.getAllStates(conn); // outputs the states table
 	}
+	public void showFreeHalls() {
+		HallsStatistics.showFreeHalls(conn);
+	}
+	
 	/*
 	// read 
 	private Integer getId() {
