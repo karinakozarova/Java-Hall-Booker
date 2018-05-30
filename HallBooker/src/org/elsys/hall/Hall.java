@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Hall 
-{
+public class Hall {
 	Connection conn = null;
 
 	public void connectToDatabase() {
@@ -23,8 +22,37 @@ public class Hall
 	}
 	
 	public void createHall(String hallname,Double rentPrice,Double buyPrice,String location,String state) {
+		//TODO implement this 
+	}
+	
+	public void checkStatusOfHallByName(String name) {
 		//TODO implement this
 	}
+	
+	public void rentHall(String name)  {
+		//TODO implement this
+	}
+	
+	public void getHallLocation(String name)  {
+		//TODO implement this
+	}
+	
+	public void changeHallName(String currentHallName,String futureHallName) {
+		//TODO implement this
+	}
+	
+	public void changeHallRentPrice(String currentHallName,Integer price) {
+		//TODO implement this
+	}
+	
+	public void changeHallBuyPrice(String currentHallName,Integer price) {
+		//TODO implement this
+	}
+	
+	public void changeHallLocation(String currentHallName,String location) {
+		//TODO implement this
+	}
+
 	public void createDatabaseTables() {
 		Database.initializeDatabase(); // creates all the tables
 	}

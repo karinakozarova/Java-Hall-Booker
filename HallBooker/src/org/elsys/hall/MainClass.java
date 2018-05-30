@@ -35,23 +35,76 @@ public class MainClass
 		} 
 		else if(input == 2) 
 		{
+			Scanner sc = new Scanner(System.in);
 			System.out.println("Check the status of a hall");
+			Hall h = new Hall();
+			System.out.println("Hall name?");
+			String hallname = sc.nextLine();
+			h.checkStatusOfHallByName(hallname);
+			sc.close();
 		}
 		else if(input == 3) 
 		{
 			System.out.println("Rent a hall");
+			Scanner sc = new Scanner(System.in);
+			Hall h = new Hall();
+			System.out.println("Hall name?");
+			String hallname = sc.nextLine();
+			h.rentHall(hallname);
+			sc.close();
 		} 
 		else if(input == 4) 
 		{
 			System.out.println("Get hall location");
+			Scanner sc = new Scanner(System.in);
+			Hall h = new Hall();
+			System.out.println("Hall name?");
+			String hallname = sc.nextLine();
+			h.getHallLocation(hallname);
+			sc.close();
 		} 
 		else if(input == 5) 
-		{
+		{			
+			Scanner sc = new Scanner(System.in);
+
 			System.out.println("Change hall details");
+			System.out.print("You want to change: ");
+			
+			System.out.println("1 - Hall name?");
+			System.out.println("2 - Rent price?");			
+			System.out.println("3 - Buy price?");			
+			System.out.println("4 - Location?");
+			Integer choice = sc.nextInt();
+
+			System.out.println("Enter current hall name:");
+			String currentHallName = sc.nextLine();
+			
+			Hall h = new Hall();
+			if(choice == 1) {
+				String futureHallName = sc.nextLine();
+				h.changeHallName(currentHallName,futureHallName);
+			}else if(choice == 2) {
+				Integer price = sc.nextInt();
+				h.changeHallRentPrice(currentHallName,price);
+			}else if(choice == 3) {
+				Integer price = sc.nextInt();
+				h.changeHallBuyPrice(currentHallName,price);
+			}else if(choice == 4) {
+				String location = sc.nextLine();
+				h.changeHallLocation(currentHallName,location);
+			}
+			sc.close();
+
 		} 
 		else if(input == 6) 
 		{
+			Scanner sc = new Scanner(System.in);
 			System.out.println("Delete hall");
+			System.out.println("Enter current hall name:");
+			String currentHallName = sc.nextLine();
+			Hall h = new Hall();
+			h.deleteHallByName(currentHallName);
+			sc.close();
 		} else if(input == 7) {
 			System.out.println("Print possible states of a hall");
 			Hall states = new Hall();

@@ -57,7 +57,6 @@ public class States {
 			PreparedStatement query = conn.prepareStatement("Select * from States");
 			result = query.executeQuery();
 			while( result.next() ) {
-				int id = result.getInt("Id");
 				String name = result.getString("StateName");
 				System.out.println(name);
 			}
