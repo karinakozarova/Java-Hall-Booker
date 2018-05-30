@@ -17,69 +17,72 @@ public class Hall {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
+	
 	public Hall() {
 		connectToDatabase();
 	}
-	
+
+	// CREATE
 	public void createHall(String hallname,Double rentPrice,Double buyPrice,String location,String state) {
 		//TODO implement this 
 	}
 	
-	public void checkStatusOfHallByName(String name) {
-		//TODO implement this
+	public void createDatabaseTables() {
+		Database.initializeDatabase(); // creates all the tables
 	}
 	
-	public void rentHall(String name)  {
+	// READ
+	public void checkStatusOfHallByName(String name) {
 		//TODO implement this
 	}
 	
 	public void getHallLocation(String name)  {
 		//TODO implement this
 	}
-	
-	public void changeHallName(String currentHallName,String futureHallName) {
-		//TODO implement this
-	}
-	
-	public void changeHallRentPrice(String currentHallName,Integer price) {
-		//TODO implement this
-	}
-	
-	public void changeHallBuyPrice(String currentHallName,Integer price) {
-		//TODO implement this
-	}
-	
-	public void changeHallLocation(String currentHallName,String location) {
-		//TODO implement this
-	}
 
-	public void showHallsWithHighBuyPrice() {
-		//TODO implement this
-	}
-	public void showAverageRentInMladost() {
-		//TODO implement this
-	}
 	public void showBoughtHalls() {
 		//TODO implement this
 	}
+	
 	public void showAllInfo() {
 		//TODO implement this
 	}
 	
-	
-	public void createDatabaseTables() {
-		Database.initializeDatabase(); // creates all the tables
-	}
-
 	public void printHallStates() {
-		 States.getAllStates(conn); // outputs the states table
+		States.getAllStates(conn); // outputs the states table
 	}
+	
 	public void showFreeHalls() {
 		HallsStatistics.showFreeHalls(conn);
 	}
-	
+
+	// UPDATE
+	public void rentHall(String name)  {
+		//TODO implement this
+	}
+
+	public void changeHallName(String currentHallName,String futureHallName) {
+		//TODO implement this
+	}
+
+	public void changeHallRentPrice(String currentHallName,Integer price) {
+		//TODO implement this
+	}
+
+	public void changeHallBuyPrice(String currentHallName,Integer price) {
+		//TODO implement this
+	}
+
+	public void changeHallLocation(String currentHallName,String location) {
+		//TODO implement this
+	}
+
+	// DELETE
 	public void deleteHallByName(String hallName) {
 		HallsStatistics.deleteHallByName(conn,hallName);
 	}
+
+
+
 
 }

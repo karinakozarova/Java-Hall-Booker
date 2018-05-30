@@ -119,26 +119,16 @@ public class MainClass
 			freeHalls.showFreeHalls();
 		}else if(input == 10) {
 			Scanner sc = new Scanner(System.in);
-
 			System.out.println("Delete Hall by name");
 			System.out.println("Enter hall name that should be deleted!");
 			Hall halls = new Hall();
 			halls.deleteHallByName(sc.nextLine()); 
 			sc.close();
-
-		}else if(input == 11) {
-			System.out.println("Show Halls with BuyPrice > 3000");
-			Hall halls = new Hall();
-			halls.showHallsWithHighBuyPrice(); 
-		}else if(input == 12) {
-			System.out.println("Show average RentPice of Halls in Mladost");
-			Hall halls = new Hall();
-			halls.showAverageRentInMladost(); 
-		}else if(input == 13) {
+		} else if(input == 11) {
 			System.out.println("Show all halls that have been bought and who bought them");
 			Hall halls = new Hall();
 			halls.showBoughtHalls(); 
-		}else if(input == 14) {	
+		}else if(input == 12) {	
 			System.out.println("Show all information");
 			Hall halls = new Hall();
 			halls.showAllInfo(); 
@@ -170,6 +160,24 @@ public class MainClass
 
 	private static void menu() 
 	{
+		//TODO add more C, U and D opers
+		/*
+		 * CRUD operations
+		 * c: 
+		 * Add your hall"
+		 * r:
+		 * Check the status of a hall
+		 * Get hall location
+		 * Print possible states of a hall
+		 * Show Free Halls
+		 * Show all halls that have been bought and who bought them
+		 * Show all information
+		 * u:
+		 * Rent a hall
+		 * d:
+		 * Delete hall
+		 * Delete Hall by name
+		 */
 		System.out.println("1 - Add your hall");
 		System.out.println("2 - Check the status of a hall");
 		System.out.println("3 - Rent a hall");
@@ -180,10 +188,8 @@ public class MainClass
 		System.out.println("8 - Create database tables");
 		System.out.println("9 - Show Free Halls");
 		System.out.println("10 - Delete Hall by name");
-		System.out.println("11 - Show Halls with BuyPrice > 3000");
-		System.out.println("12 - Show average RentPice of Halls in Mladost");
-		System.out.println("13 - Show all halls that have been bought and who bought them");
-		System.out.println("14 - Show all information");
+		System.out.println("11 - Show all halls that have been bought and who bought them");
+		System.out.println("12 - Show all information");
 		System.out.println("quit - Exit app");
 	}
 }
