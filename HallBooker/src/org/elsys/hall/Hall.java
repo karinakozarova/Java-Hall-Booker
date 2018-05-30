@@ -53,6 +53,20 @@ public class Hall {
 		//TODO implement this
 	}
 
+	public void showHallsWithHighBuyPrice() {
+		//TODO implement this
+	}
+	public void showAverageRentInMladost() {
+		//TODO implement this
+	}
+	public void showBoughtHalls() {
+		//TODO implement this
+	}
+	public void showAllInfo() {
+		//TODO implement this
+	}
+	
+	
 	public void createDatabaseTables() {
 		Database.initializeDatabase(); // creates all the tables
 	}

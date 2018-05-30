@@ -10,25 +10,25 @@ public class MainClass
 		if(input == 1) 
 		{
 			Scanner sc = new Scanner(System.in);
-			
+
 			System.out.println("Add your hall");	
 			Hall h = new Hall();
 			System.out.println("Hall name?");
 			String hallname = sc.nextLine();
-			
+
 			System.out.println("Rent price?");
 			Double rentPrice = sc.nextDouble();
-			
-			
+
+
 			System.out.println("Buy price?");
 			Double buyPrice = sc.nextDouble();
-			
+
 			System.out.println("Location?");
 			String location = sc.nextLine();
-	/*		
+			/*		
 			System.out.println("State?");
 			String state = sc.nextLine();
-			*/
+			 */
 			String state = "Free";
 			h.createHall( hallname, rentPrice, buyPrice, location, state);
 			sc.close();
@@ -69,7 +69,7 @@ public class MainClass
 
 			System.out.println("Change hall details");
 			System.out.print("You want to change: ");
-			
+
 			System.out.println("1 - Hall name?");
 			System.out.println("2 - Rent price?");			
 			System.out.println("3 - Buy price?");			
@@ -78,7 +78,7 @@ public class MainClass
 
 			System.out.println("Enter current hall name:");
 			String currentHallName = sc.nextLine();
-			
+
 			Hall h = new Hall();
 			if(choice == 1) {
 				String futureHallName = sc.nextLine();
@@ -126,30 +126,39 @@ public class MainClass
 			halls.deleteHallByName(sc.nextLine()); 
 			sc.close();
 
+		}else if(input == 11) {
+			System.out.println("Show Halls with BuyPrice > 3000");
+			Hall halls = new Hall();
+			halls.showHallsWithHighBuyPrice(); 
+		}else if(input == 12) {
+			System.out.println("Show average RentPice of Halls in Mladost");
+			Hall halls = new Hall();
+			halls.showAverageRentInMladost(); 
+		}else if(input == 13) {
+			System.out.println("Show all halls that have been bought and who bought them");
+			Hall halls = new Hall();
+			halls.showBoughtHalls(); 
+		}else if(input == 14) {	
+			System.out.println("Show all information");
+			Hall halls = new Hall();
+			halls.showAllInfo(); 
 		}
 	}
 	public static void main(String[] args) 
 	{
 		System.out.println("Welcome to Hall Booker!");
 		System.out.println("What do you want to do?");
-		
+
 
 		Scanner scan = new Scanner(System.in);
 		while(true) 
 		{
 			menu();
 			String input = scan.nextLine();
-			if(input.equals("quit"))
-			{
-				break;
-			}
-			try
-			{
+			if(input.equals("quit")) break;
+			try{
 				Integer inputInt = Integer.parseInt(input);
-				if(inputInt > 0) 
-				{
-					inputController(inputInt);
-				}
+				if(inputInt > 0) inputController(inputInt);	
 			}
 			catch(NumberFormatException e)
 			{
@@ -171,6 +180,10 @@ public class MainClass
 		System.out.println("8 - Create database tables");
 		System.out.println("9 - Show Free Halls");
 		System.out.println("10 - Delete Hall by name");
+		System.out.println("11 - Show Halls with BuyPrice > 3000");
+		System.out.println("12 - Show average RentPice of Halls in Mladost");
+		System.out.println("13 - Show all halls that have been bought and who bought them");
+		System.out.println("14 - Show all information");
 		System.out.println("quit - Exit app");
 	}
 }
