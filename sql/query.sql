@@ -1,3 +1,7 @@
+#--------------------------------------------------------------
+# READ
+#--------------------------------------------------------------
+
 # 1.Show Halls and their RentPrice
 SELECT Name, RentPrice
 FROM Hall;
@@ -95,3 +99,50 @@ FROM Hall h INNER JOIN Location l ON l.Id = h.LocationId
 INNER JOIN State s ON s.Id = h.StateId
 RIGHT JOIN HallUser hu ON h.Id = hu.HallId
 LEFT JOIN User u ON u.Id = hu.UserId;
+
+#--------------------------------------------------------------
+# UPDATE
+#--------------------------------------------------------------
+
+# 1.Universiada now has a RentPrice of 150.00
+
+# 2.Stefan becomes Stephan
+
+# 3.GM Dimitrov is now called Geo Milev
+UPDATE Location
+SET Address = 'Geo Milev'
+WHERE Address = 'GM Dimitrov';
+
+# 4.Change HallId for Location From 2000-08-15 to 2
+
+# 5.All of Karina's bought property become Momcil's
+
+# 6.JUMBO moves to Suatina
+UPDATE Hall
+INNER JOIN Location l ON l.Id = LocationId
+SET LocationId = (SELECT l.Id FROM Location l WHERE Address = 'Suatina')
+WHERE Name = 'JUMBO'; 
+
+# 7.Momchil buys WC
+
+# 8.Karina rents Universiada
+
+# 9.Stefan frees METRO
+DELETE FROM HallUser
+WHERE HallId = (SELECT Id FROM Hall WHERE Name = 'METRO')
+AND UserId = (SELECT Id FROM User WHERE FirstName = 'Stephan');
+
+UPDATE Hall 
+SET StateId = (SELECT Id FROM State WHERE StateName = 'Free')
+WHERE Name = 'METRO';
+
+# 1.Delete Karina as a user
+
+# 2.Delete Universiada
+
+# 3.Delete all halls connected to Stefan and Stefan himself
+DELETE FROM Hall
+WHERE Id = (SELECT HallId FROM HallUser WHERE UserId = (SELECT Id FROM User WHERE FirstName = 'Stephan'));
+
+DELETE FROM User
+WHERE FirstName = 'Stephan';

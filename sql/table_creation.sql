@@ -1,6 +1,9 @@
 DROP DATABASE IF EXISTS HallBooker;
+DROP DATABASE IF EXISTS halls;
 CREATE DATABASE HallBooker CHARSET 'utf8';
 USE HallBooker;
+SET foreign_key_checks=0;
+
 
 # Hall
 -- | Id | Name        | RentPrice | BuyPrice | LocationId | StateId |
@@ -15,11 +18,13 @@ USE HallBooker;
 CREATE TABLE Hall(
 	Id INTEGER NOT NULL,
 	Name VARCHAR(250),
-	RentPrice DOUBLE,
-    BuyPrice DOUBLE,
-    LocationId INTEGER,
-    StateId INTEGER,
-    PRIMARY KEY(Id)
+	RentPrice DOUBLE NOT NULL,
+    BuyPrice DOUBLE ,
+    LocationId INTEGER NOT NULL,
+    StateId INTEGER NOT NULL,
+    PRIMARY KEY(Id),
+    FOREIGN KEY (LocationId) REFERENCES Location(Id),
+    FOREIGN KEY (StateId) REFERENCES State(Id)
 );
 
 INSERT INTO Hall VALUES (1, 'Universiada', 120.00, 1250.00, 1, 1);
@@ -80,7 +85,9 @@ CREATE TABLE HallUser(
 	Id INTEGER NOT NULL,
 	HallId INTEGER NOT NULL,
 	UserId INTEGER NOT NULL,
-    PRIMARY KEY(Id)
+    PRIMARY KEY(Id),
+    FOREIGN KEY (HallId) REFERENCES Hall(Id),
+    FOREIGN KEY (UserId) REFERENCES User(Id)
 );
 
 INSERT INTO HallUser VALUES(1, 2, 12);
@@ -117,9 +124,10 @@ INSERT INTO User VALUES(24, 'Stefan', 'Angelov');
 CREATE TABLE Rented(
 	Id INTEGER NOT NULL,
 	HallId INTEGER NOT NULL,
-	FromDate DATETIME NOT NULL,
-	UntilDate DATETIME NOT NULL,
-    PRIMARY KEY (Id)
+	FromDate DATE NOT NULL,
+	UntilDate DATE NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (HallId) REFERENCES Hall(Id)
 );
 
 INSERT INTO Rented VALUES(1, 3, '2000-08-15', '2000-10-06');
