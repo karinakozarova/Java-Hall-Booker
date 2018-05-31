@@ -32,6 +32,14 @@ public class Hall {
 		Database.initializeDatabase(); // creates all the tables
 	}
 	
+	public void newHallState() {
+		Scanner sc = new Scanner(System.in);
+		String stateInput = sc.next();
+		States.addState(conn,stateInput);
+		sc.close();
+	}
+
+	
 	// READ
 	public void checkStatusOfHallByName(String name) {
 		//TODO implement this
@@ -77,6 +85,16 @@ public class Hall {
 	public void changeHallLocation(String currentHallName,String location) {
 		//TODO implement this
 	}
+	
+	public void updateHallState() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter current state of the state that you want to change!");
+		String current = sc.next();
+		System.out.println("Enter how you want to change it");
+		String future = sc.next();
+		States.updateStates(conn,current,future);
+		sc.close();
+	}
 
 	// DELETE
 	public void deleteHallByName(String hallName) {
@@ -88,22 +106,6 @@ public class Hall {
 		// TODO Auto-generated method stub
 	}
 
-	public void newHallState() {
-		Scanner sc = new Scanner(System.in);
-		String stateInput = sc.next();
-		States.addState(conn,stateInput);
-		sc.close();
-	}
-
-	public void updateHallState() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter current state of the state that you want to change!");
-		String current = sc.next();
-		System.out.println("Enter how you want to change it");
-		String future = sc.next();
-		States.updateStates(conn,current,future);
-		sc.close();
-	}
 
 	public void deleteHallState() {
 		Scanner sc = new Scanner(System.in);
