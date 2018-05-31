@@ -180,7 +180,11 @@ public class InputController {
 			System.out.println("Delete Universiada hall");
 			Hall halls = new Hall();
 			halls.deleteUniversiada();
-		} 
+		} else if(input == 19) {
+			System.out.println("Change GM Dimitrov to Geo Milev");
+			Hall halls = new Hall();
+			halls.renameGMDimitrov();
+		}
 	}
 
 }

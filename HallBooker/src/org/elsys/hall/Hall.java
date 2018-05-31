@@ -183,4 +183,16 @@ public class Hall {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
+
+	public void renameGMDimitrov() {
+		try {
+			PreparedStatement query = 
+					conn.prepareStatement("UPDATE Location\n" + 
+							"SET Address = 'Geo Milev'\n" + 
+							"WHERE Address = 'GM Dimitrov';");
+			query.executeUpdate();
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}	
+	}
 }
