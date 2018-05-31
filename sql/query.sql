@@ -105,6 +105,9 @@ LEFT JOIN User u ON u.Id = hu.UserId;
 #--------------------------------------------------------------
 
 # 1.Universiada now has a RentPrice of 150.00
+UPDATE Hall
+SET RentPrice = 150.00
+WHERE Name = 'Universiada';
 
 # 2.Stefan becomes Stephan
 
@@ -116,6 +119,12 @@ WHERE Address = 'GM Dimitrov';
 # 4.Change HallId for Location From 2000-08-15 to 2
 
 # 5.All of Karina's bought property become Momcil's
+UPDATE HallUser
+INNER JOIN Hall h ON h.Id = HallId
+INNER JOIN User u ON u.Id = UserId
+INNER JOIN State s ON s.Id = h.StateId
+SET UserId = (SELECT Id FROM User WHERE FirstName = 'Momchil')
+WHERE UserId = (SELECT Id FROM User WHERE FirstName = 'Karina') AND StateName = 'Bought';
 
 # 6.JUMBO moves to Suatina
 UPDATE Hall
@@ -126,6 +135,12 @@ WHERE Name = 'JUMBO';
 # 7.Momchil buys WC
 
 # 8.Karina rents Universiada
+INSERT INTO HallUser VALUES
+(
+  7, 
+  (SELECT Id FROM Hall WHERE Name = 'Universiada'), 
+    (SELECT Id FROM User WHERE FirstName = 'Karina')
+);
 
 # 9.Stefan frees METRO
 DELETE FROM HallUser
@@ -137,6 +152,8 @@ SET StateId = (SELECT Id FROM State WHERE StateName = 'Free')
 WHERE Name = 'METRO';
 
 # 1.Delete Karina as a user
+DELETE FROM User
+WHERE FirstName = 'Karina';
 
 # 2.Delete Universiada
 
