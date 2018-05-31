@@ -97,8 +97,26 @@ public class Hall {
 	}
 
 	// UPDATE
-	public void rentHall(String name)  {
+	public void rentHall()  {
 		//TODO implement this
+		InsertingData.executeStatement(conn,"INSERT INTO HallUser VALUES\n" + 
+				"(\n" + 
+				"7, \n" + 
+				"(SELECT Id FROM Hall WHERE Name = 'JUMBO'), \n" + 
+				"(SELECT Id FROM User WHERE FirstName = 'Karina')\n" + 
+				");");
+
+		try {
+			PreparedStatement query = 
+					conn.prepareStatement("UPDATE Hall \n" + 
+							"SET StateId = (SELECT Id FROM State WHERE StateName = 'Rented')\n" + 
+							"WHERE Name = 'JUMBO';");
+			query.executeUpdate();
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}	
+
+		
 	}
 
 	public void changeHallName(String currentHallName,String futureHallName) {

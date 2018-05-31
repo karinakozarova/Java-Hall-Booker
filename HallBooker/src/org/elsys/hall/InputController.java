@@ -76,13 +76,9 @@ public class InputController {
 		}
 		else if(input == 3) 
 		{
-			System.out.println("Rent a hall");
-			Scanner sc = new Scanner(System.in);
+			System.out.println("Rent JUMBO hall");
 			Hall h = new Hall();
-			System.out.println("Hall name?");
-			String hallname = sc.nextLine();
-			h.rentHall(hallname);
-			sc.close();
+			h.rentHall();
 		} 
 		else if(input == 4) 
 		{

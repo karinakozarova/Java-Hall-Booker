@@ -38,7 +38,7 @@ public class MainClass {
 	{
 		System.out.println("1 - Add your hall");
 		System.out.println("2 - Check the status of a hall");
-		System.out.println("3 - Rent a hall");
+		System.out.println("3 - Rent JUMBO hall");
 		System.out.println("4 - Get halls and their location");
 		System.out.println("5 - Change hall details");
 		System.out.println("6 - Delete hall");
