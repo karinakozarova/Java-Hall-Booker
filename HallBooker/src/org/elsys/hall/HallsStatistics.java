@@ -48,4 +48,26 @@ public class HallsStatistics {
 			OutputException.sqlErrorInfo(ex);
 		}
 	}
+
+	public static void showAllInfo(Connection conn) {
+		ResultSet result;
+		try {
+			PreparedStatement query = conn.prepareStatement("");
+			result = query.executeQuery("SELECT h.Id, h.Name AS HallName, h.RentPrice, h.BuyPrice, \n" + 
+					"l.Address, s.StateName AS State, u.FirstName, u.LastName\n" + 
+					"FROM Hall h INNER JOIN Location l ON l.Id = h.LocationId\n" + 
+					"INNER JOIN State s ON s.Id = h.StateId\n" + 
+					"RIGHT JOIN HallUser hu ON h.Id = hu.HallId\n" + 
+					"LEFT JOIN User u ON u.Id = hu.UserId;\n");
+			while( result.next() ) {
+				String name = result.getString("HallName");
+				Double RentPrice = result.getDouble("RentPrice");
+				Double BuyPrice = result.getDouble("BuyPrice");
+
+				System.out.println(name + " " + RentPrice + " " + BuyPrice);
+			}
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}	
+	}
 }

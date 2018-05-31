@@ -39,7 +39,6 @@ public class Hall {
 		sc.close();
 	}
 
-	
 	// READ
 	public void checkStatusOfHallByName(String name) {
 		//TODO implement this
@@ -54,7 +53,7 @@ public class Hall {
 	}
 	
 	public void showAllInfo() {
-		//TODO implement this
+		HallsStatistics.showAllInfo(conn);
 	}
 	
 	public void printHallStates() {
@@ -103,9 +102,7 @@ public class Hall {
 
 	public void deleteAllStefanHalls() {
 		HallsStatistics.deleteAllStefanHalls(conn);
-		// TODO Auto-generated method stub
 	}
-
 
 	public void deleteHallState() {
 		Scanner sc = new Scanner(System.in);
