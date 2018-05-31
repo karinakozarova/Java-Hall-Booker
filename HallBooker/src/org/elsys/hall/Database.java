@@ -51,7 +51,7 @@ public class Database {
 
 			query.execute("DROP TABLE IF EXISTS State\n");
 			query.execute("	CREATE TABLE State(\n" + 
-					"		Id INTEGER NOT NULL,\n" + 
+					"		Id INTEGER AUTO_INCREMENT NOT NULL,\n" + 
 					"		StateName VARCHAR(35),\n" + 
 					"	    PRIMARY KEY(Id));\n");
 

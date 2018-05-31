@@ -61,9 +61,11 @@ public class States {
 
 	/** adds new logical state to the States table **/
 	public static void addState(Connection conn,String state) {
-
+		System.out.println("State is: " + state);
+		String queryString = "Insert Into States(StateName) Values('" + state + "');";
+		System.out.println(queryString);
 		try {
-			PreparedStatement query = conn.prepareStatement("Insert Into States(StateName) Values('?');");
+			PreparedStatement query = conn.prepareStatement(queryString);
 			query.setString(1, state);
 			query.executeUpdate();
 		} catch (SQLException ex) {

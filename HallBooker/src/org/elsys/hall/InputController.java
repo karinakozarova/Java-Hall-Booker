@@ -3,7 +3,27 @@ package org.elsys.hall;
 import java.util.Scanner;
 
 public class InputController {
-	
+	/*
+	 * tested and working:
+	 * 7
+	 * 8
+	 * tested and problematic:
+	 * scanenr problems:
+	 * 2
+	 * 3
+	 * 4
+	 * 5
+	 * 6
+	 * 10
+	 * 14
+	 * 15
+	 * 16
+	 * tested and maybe working(no data to make sure working):
+	 * 9
+	 * 11
+	 * 12
+	 * 13
+	 */
 	static void inputController(Integer input) 
 	{			
 
@@ -40,7 +60,8 @@ public class InputController {
 			System.out.println("Check the status of a hall");
 			Hall h = new Hall();
 			System.out.println("Hall name?");
-			String hallname = sc.nextLine();
+			String hallname = sc.next();
+			//String hallname = "Universiada";
 			h.checkStatusOfHallByName(hallname);
 			sc.close();
 		}

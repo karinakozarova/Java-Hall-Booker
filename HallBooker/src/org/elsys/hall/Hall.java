@@ -34,7 +34,7 @@ public class Hall {
 	
 	public void newHallState() {
 		Scanner sc = new Scanner(System.in);
-		String stateInput = sc.next();
+		String stateInput = sc.nextLine();
 		States.addState(conn,stateInput);
 		sc.close();
 	}
@@ -111,5 +111,8 @@ public class Hall {
 		States.deleteStateByName(conn, StateName);
 		sc.close();
 	}
-
+	public void insertData() {
+		InsertingData.insertAll(conn);
+	}
+	
 }

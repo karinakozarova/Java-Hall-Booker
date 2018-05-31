@@ -52,13 +52,13 @@ public class HallsStatistics {
 	public static void showAllInfo(Connection conn) {
 		ResultSet result;
 		try {
-			PreparedStatement query = conn.prepareStatement("");
-			result = query.executeQuery("SELECT h.Id, h.Name AS HallName, h.RentPrice, h.BuyPrice, \n" + 
+			PreparedStatement query = conn.prepareStatement("SELECT h.Id, h.Name AS HallName, h.RentPrice, h.BuyPrice, \n" + 
 					"l.Address, s.StateName AS State, u.FirstName, u.LastName\n" + 
 					"FROM Hall h INNER JOIN Location l ON l.Id = h.LocationId\n" + 
 					"INNER JOIN State s ON s.Id = h.StateId\n" + 
 					"RIGHT JOIN HallUser hu ON h.Id = hu.HallId\n" + 
 					"LEFT JOIN User u ON u.Id = hu.UserId;\n");
+			result = query.executeQuery();
 			while( result.next() ) {
 				String name = result.getString("HallName");
 				Double RentPrice = result.getDouble("RentPrice");

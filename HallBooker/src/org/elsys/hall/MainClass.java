@@ -15,6 +15,12 @@ public class MainClass {
 			menu();
 			String input = scan.nextLine();
 			if(input.equals("quit")) break;
+			if(input.equals("data")) {
+				Hall h = new Hall();
+				h.insertData();
+				continue;
+			}
+
 			try{
 				Integer inputInt = Integer.parseInt(input);
 				if(inputInt > 0) InputController.inputController(inputInt);	
@@ -46,5 +52,6 @@ public class MainClass {
 		System.out.println("15 - Update Hall State");
 		System.out.println("16 - Delete Hall State");
 		System.out.println("quit - Exit app");
+		System.out.println("data - Insert sample data");
 	}
 }
