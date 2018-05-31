@@ -31,4 +31,21 @@ public class HallsStatistics {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
+
+	public static void deleteAllStefanHalls(Connection conn) {
+		try {
+			PreparedStatement query =
+					conn.prepareStatement("DELETE FROM Hall\n" + 
+							"WHERE Id = "
+							+ "(SELECT HallId FROM HallUser WHERE UserId = "
+							+ "(SELECT Id FROM User WHERE FirstName = 'Stephan'));\n");
+			query.executeUpdate();
+			query =
+					conn.prepareStatement("DELETE FROM User\n" + 
+							"WHERE FirstName = 'Stephan';");
+			query.executeUpdate();
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}
+	}
 }

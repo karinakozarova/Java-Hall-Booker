@@ -3,6 +3,7 @@ package org.elsys.hall;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Hall {
 	Connection conn = null;
@@ -80,6 +81,36 @@ public class Hall {
 	// DELETE
 	public void deleteHallByName(String hallName) {
 		HallsStatistics.deleteHallByName(conn,hallName);
+	}
+
+	public void deleteAllStefanHalls() {
+		HallsStatistics.deleteAllStefanHalls(conn);
+		// TODO Auto-generated method stub
+	}
+
+	public void newHallState() {
+		Scanner sc = new Scanner(System.in);
+		String stateInput = sc.next();
+		States.addState(conn,stateInput);
+		sc.close();
+	}
+
+	public void updateHallState() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter current state of the state that you want to change!");
+		String current = sc.next();
+		System.out.println("Enter how you want to change it");
+		String future = sc.next();
+		States.updateStates(conn,current,future);
+		sc.close();
+	}
+
+	public void deleteHallState() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter state that you want to delete");
+		String StateName = sc.next();
+		States.deleteStateByName(conn, StateName);
+		sc.close();
 	}
 
 }

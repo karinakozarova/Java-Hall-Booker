@@ -132,6 +132,22 @@ public class MainClass
 			System.out.println("Show all information");
 			Hall halls = new Hall();
 			halls.showAllInfo(); 
+		} else if(input == 13) {
+			System.out.println("Delete all halls connected to Stefan and Stefan himself");
+			Hall halls = new Hall();
+			halls.deleteAllStefanHalls(); 
+		}else if(input == 14) {
+			System.out.println("Create new Hall State");
+			Hall halls = new Hall();
+			halls.newHallState(); 
+		}else if(input == 15) {
+			System.out.println("Update Hall State");
+			Hall halls = new Hall();
+			halls.updateHallState(); 
+		}else if(input == 16) {
+			System.out.println("Delete Hall State");
+			Hall halls = new Hall();
+			halls.deleteHallState(); 
 		}
 	}
 	public static void main(String[] args) 
@@ -160,24 +176,6 @@ public class MainClass
 
 	private static void menu() 
 	{
-		//TODO add more C, U and D opers
-		/*
-		 * CRUD operations
-		 * c: 
-		 * Add your hall"
-		 * r:
-		 * Check the status of a hall
-		 * Get hall location
-		 * Print possible states of a hall
-		 * Show Free Halls
-		 * Show all halls that have been bought and who bought them
-		 * Show all information
-		 * u:
-		 * Rent a hall
-		 * d:
-		 * Delete hall
-		 * Delete Hall by name
-		 */
 		System.out.println("1 - Add your hall");
 		System.out.println("2 - Check the status of a hall");
 		System.out.println("3 - Rent a hall");
@@ -190,6 +188,10 @@ public class MainClass
 		System.out.println("10 - Delete Hall by name");
 		System.out.println("11 - Show all halls that have been bought and who bought them");
 		System.out.println("12 - Show all information");
+		System.out.println("13 - Delete all halls connected to Stefan and Stefan himself");
+		System.out.println("14 - Create new Hall State");
+		System.out.println("15 - Update Hall State");
+		System.out.println("16 - Delete Hall State");
 		System.out.println("quit - Exit app");
 	}
 }

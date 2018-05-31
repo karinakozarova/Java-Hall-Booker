@@ -8,10 +8,20 @@ import java.sql.SQLException;
 public class States {
 
 	/** deletes state from States table where certain Id*/
-	public static void deleteState(Connection conn, Integer StateId) {
+	public static void deleteStateById(Connection conn, Integer StateId) {
 		try {
 			PreparedStatement query = conn.prepareStatement("Delete from States where Id = ?");
 			query.setInt(1, StateId);
+			query.executeUpdate();
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}	
+	}
+	
+	public static void deleteStateByName(Connection conn,String StateName) {
+		try {
+			PreparedStatement query = conn.prepareStatement("Delete from States where StateName = ?");
+			query.setString(1, StateName);
 			query.executeUpdate();
 		} catch (SQLException ex) {
 			OutputException.sqlErrorInfo(ex);
@@ -48,6 +58,18 @@ public class States {
 		}		
 	}
 	
+
+	/** adds new logical state to the States table **/
+	public static void addState(Connection conn,String state) {
+
+		try {
+			PreparedStatement query = conn.prepareStatement("Insert Into States(StateName) Values('?');");
+			query.setString(1, state);
+			query.executeUpdate();
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}		
+	}
 
 	/** returns all states that were added at the States table **/
 	public static void getAllStates(Connection conn) {
