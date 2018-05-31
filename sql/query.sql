@@ -110,13 +110,19 @@ SET RentPrice = 150.00
 WHERE Name = 'Universiada';
 
 # 2.Stefan becomes Stephan
+UPDATE User
+SET FirstName = 'Stephan'
+WHERE FirstName = 'Stefan';
 
 # 3.GM Dimitrov is now called Geo Milev
 UPDATE Location
 SET Address = 'Geo Milev'
 WHERE Address = 'GM Dimitrov';
 
-# 4.Change HallId for Location From 2000-08-15 to 2
+# 4.Change HallId for Rented From 2000-08-15 to 2
+UPDATE Rented
+SET HallId = 2
+WHERE FromDate = '2000-08-15';
 
 # 5.All of Karina's bought property become Momcil's
 UPDATE HallUser
@@ -133,6 +139,15 @@ SET LocationId = (SELECT l.Id FROM Location l WHERE Address = 'Suatina')
 WHERE Name = 'JUMBO'; 
 
 # 7.Momchil buys WC
+INSERT INTO HallUser VALUES
+(
+  6, 
+  (SELECT Id FROM Hall WHERE Name = 'WC'), 
+    (SELECT Id FROM User WHERE FirstName = 'Momchil')
+);
+UPDATE Hall 
+SET StateId = (SELECT Id FROM State WHERE StateName = 'Bought')
+WHERE Name = 'WC';
 
 # 8.Karina rents Universiada
 INSERT INTO HallUser VALUES
@@ -141,6 +156,10 @@ INSERT INTO HallUser VALUES
   (SELECT Id FROM Hall WHERE Name = 'Universiada'), 
     (SELECT Id FROM User WHERE FirstName = 'Karina')
 );
+
+UPDATE Hall 
+SET StateId = (SELECT Id FROM State WHERE StateName = 'Rented')
+WHERE Name = 'Universiada';
 
 # 9.Stefan frees METRO
 DELETE FROM HallUser
@@ -151,11 +170,18 @@ UPDATE Hall
 SET StateId = (SELECT Id FROM State WHERE StateName = 'Free')
 WHERE Name = 'METRO';
 
+#--------------------------------------------------------------
+# DELETE
+#--------------------------------------------------------------
+
 # 1.Delete Karina as a user
 DELETE FROM User
 WHERE FirstName = 'Karina';
 
 # 2.Delete Universiada
+DELETE FROM Hall
+WHERE Name = 'Universiada';
+
 
 # 3.Delete all halls connected to Stefan and Stefan himself
 DELETE FROM Hall
