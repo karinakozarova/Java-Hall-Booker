@@ -24,11 +24,65 @@ public class Hall {
 	public Hall() {
 		connectToDatabase();
 	}
+	
+	public Integer getMaxHallID() {
+		ResultSet result;
+		try {
+			PreparedStatement query = 
+					conn.prepareStatement("SELECT Id from Hall ORDER BY Id DESC LIMIT 1;\n");
+			result = query.executeQuery();
+			while(result.next()) {
+				Integer id = result.getInt("Id");
+				System.out.println("ID is:");
+				System.out.println(id);
+				return id;
+			}
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}
+		return null;
+	}
 
 	// CREATE
 	public void createHall(String hallname,Double rentPrice,Double buyPrice,String location,String state) {
 		// TODO create query string from params 
 		String querystring = null;
+		Integer id = getMaxHallID();
+		
+		Integer locationID = 1;
+		Integer stateId = 1;
+		
+		try {
+			String str = "SELECT l.Id FROM Location l WHERE Address = '"
+					+ location + "'";
+			PreparedStatement query = conn.prepareStatement(str);
+			ResultSet result = null;
+			
+			result = query.executeQuery();
+			while( result.next() ) {
+				locationID = result.getInt("Id");
+			}
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}	
+		
+		try {
+			String str = "SELECT s.Id FROM States s WHERE StateName = '"
+					+ state + "'";
+			PreparedStatement query = conn.prepareStatement(str);
+			ResultSet result = null;
+			
+			result = query.executeQuery();
+			while( result.next() ) {
+				stateId = result.getInt("Id");
+			}
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}
+		querystring = "INSERT INTO Hall VALUES (" 
+		+ (id + 1) + ", '" + hallname+ " ', "
+		+ rentPrice + ", " +buyPrice + ", "
+		+ locationID + ", " + stateId + ");";
 		InsertingData.insertHallData(conn, querystring);
 	}
 
