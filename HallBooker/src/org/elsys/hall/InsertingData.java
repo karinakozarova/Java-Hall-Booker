@@ -49,6 +49,10 @@ public class InsertingData {
 
 	}
 
+	public static void insertHallData(Connection conn,String querystring) {
+		executeStatement(conn,querystring);
+	}
+	
 	public static void executeStatement(Connection conn,String queryString) {
 		try {
 			PreparedStatement query = conn.prepareStatement(queryString);

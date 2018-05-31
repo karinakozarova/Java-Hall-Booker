@@ -27,7 +27,9 @@ public class Hall {
 
 	// CREATE
 	public void createHall(String hallname,Double rentPrice,Double buyPrice,String location,String state) {
-		//TODO implement this 
+		// TODO create query string from params 
+		String querystring = null;
+		InsertingData.insertHallData(conn, querystring);
 	}
 	
 	public void createDatabaseTables() {
