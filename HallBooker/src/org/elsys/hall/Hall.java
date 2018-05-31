@@ -24,7 +24,7 @@ public class Hall {
 	public Hall() {
 		connectToDatabase();
 	}
-	
+
 	public Integer getMaxHallID() {
 		ResultSet result;
 		try {
@@ -33,8 +33,6 @@ public class Hall {
 			result = query.executeQuery();
 			while(result.next()) {
 				Integer id = result.getInt("Id");
-				System.out.println("ID is:");
-				System.out.println(id);
 				return id;
 			}
 		} catch (SQLException ex) {
@@ -43,35 +41,44 @@ public class Hall {
 		return null;
 	}
 
-	public void checkStatusOfHallByName(String name) {
-		//TODO implement this
-		System.out.println("UNIMPLEMENTED");
+
+	public void checkStatusOfHallByName(String name) { //TBT
+		String queryString = 
+				"SELECT StatusName FROM Status s INNER JOIN Hall ON s.Id = StatusId WHERE Name = '"
+						+ name + "'";
+
+		InsertingData.executeStatement(conn, queryString);
 	}
 
-	public void changeHallName(String currentHallName,String futureHallName) {
-		//TODO implement this
-		System.out.println("UNIMPLEMENTED");
+	public void changeHallName(String currentHallName,String futureHallName) { //TBT
+		String queryString = "UPDATE Hall SET Name = '" + futureHallName +
+				"' WHERE Name = '" + currentHallName + "'";
+		InsertingData.executeStatement(conn, queryString);
 
 	}
 
-	public void changeHallRentPrice(String currentHallName,Integer price) {
-		//TODO implement this
-		System.out.println("UNIMPLEMENTED");
+	public void changeHallRentPrice(String currentHallName,Integer price) { //TBT
+		String queryString = "UPDATE Hall SET RentPrice =" + price + " WHERE Name = '" 
+				+ currentHallName + "'";
+		InsertingData.executeStatement(conn, queryString);
+
 
 	}
 
-	public void changeHallBuyPrice(String currentHallName,Integer price) {
-		//TODO implement this
-		System.out.println("UNIMPLEMENTED");
+	public void changeHallBuyPrice(String currentHallName,Integer price) { //TBT
+		String queryString = "UPDATE Hall SET BuyPrice = " + price + " WHERE Name = '"
+				+ currentHallName + "'";
+		InsertingData.executeStatement(conn, queryString);
 
 	}
 
 	public void changeHallLocation(String currentHallName,String location) {
-		//TODO implement this
-		System.out.println("UNIMPLEMENTED");
+		String queryString = "UPDATE Hall SET LocationId = (SELECT Id FROM Location WHERE Address = "
+				+ location + ")WHERE Name = '" + currentHallName + "'";
+		InsertingData.executeStatement(conn, queryString);
 
 	}
-	
+
 	public Integer getLocationIdFromString(String location) {
 		Integer locationID = 1;
 		try {
@@ -79,7 +86,7 @@ public class Hall {
 					+ location + "'";
 			PreparedStatement query = conn.prepareStatement(str);
 			ResultSet result = null;
-			
+
 			result = query.executeQuery();
 			while( result.next() ) {
 				locationID = result.getInt("Id");
@@ -89,7 +96,7 @@ public class Hall {
 		}
 		return locationID;
 	}
-	
+
 	public Integer getStateIdFromString(String state) {
 		Integer stateId = 1;
 
@@ -97,9 +104,7 @@ public class Hall {
 			String str = "SELECT s.Id FROM States s WHERE StateName = '"
 					+ state + "'";
 			PreparedStatement query = conn.prepareStatement(str);
-			ResultSet result = null;
-			
-			result = query.executeQuery();
+			ResultSet result = query.executeQuery();
 			while( result.next() ) {
 				stateId = result.getInt("Id");
 			}
@@ -108,18 +113,18 @@ public class Hall {
 		}
 		return stateId;
 	}
-	
+
 	// CREATE
 	public void createHall(String hallname,Double rentPrice,Double buyPrice,String location,String state) {
 		Integer id = getMaxHallID();
-		
+
 		Integer locationID = getLocationIdFromString(location);
 		Integer stateId = getStateIdFromString(state);
-		
+
 		String querystring = "INSERT INTO Hall VALUES (" 
-		+ (id + 1) + ", '" + hallname+ " ', "
-		+ rentPrice + ", " +buyPrice + ", "
-		+ locationID + ", " + stateId + ");";
+				+ (id + 1) + ", '" + hallname+ " ', "
+				+ rentPrice + ", " +buyPrice + ", "
+				+ locationID + ", " + stateId + ");";
 		InsertingData.insertHallData(conn, querystring);
 	}
 
@@ -150,7 +155,7 @@ public class Hall {
 		}
 	}
 
-	
+
 	public void showBoughtHalls() {
 		HallsStatistics.showBoughtHalls(conn);		
 	}
@@ -172,9 +177,7 @@ public class Hall {
 		} catch (SQLException ex) {
 			OutputException.sqlErrorInfo(ex);
 		}
-
 	}
-
 
 	public void showAllInfo() {
 		HallsStatistics.showAllInfo(conn);
@@ -197,19 +200,10 @@ public class Hall {
 				"(SELECT Id FROM User WHERE FirstName = 'Karina')\n" + 
 				");");
 
-		try {
-			PreparedStatement query = 
-					conn.prepareStatement("UPDATE Hall \n" + 
-							"SET StateId = (SELECT Id FROM State WHERE StateName = 'Rented')\n" + 
-							"WHERE Name = 'JUMBO';");
-			query.executeUpdate();
-		} catch (SQLException ex) {
-			OutputException.sqlErrorInfo(ex);
-		}	
-
-
+		InsertingData.executeStatement(conn,"UPDATE Hall \n" + 
+				"SET StateId = (SELECT Id FROM State WHERE StateName = 'Rented')\n" + 
+				"WHERE Name = 'JUMBO';");	
 	}
-
 
 
 	public void updateHallState() {
@@ -249,26 +243,14 @@ public class Hall {
 	}
 
 	public void deleteUniversiada() {
-		try {
-			PreparedStatement query =
-					conn.prepareStatement("DELETE FROM Hall\n" + 
-							"WHERE Name = 'Universiada';");
-			query.executeUpdate();
-		} catch (SQLException ex) {
-			OutputException.sqlErrorInfo(ex);
-		}	
+		InsertingData.executeStatement(conn,"DELETE FROM Hall\n" + 
+				"WHERE Name = 'Universiada';");
 	}
 
 	public void renameGMDimitrov() {
-		try {
-			PreparedStatement query = 
-					conn.prepareStatement("UPDATE Location\n" + 
-							"SET Address = 'Geo Milev'\n" + 
-							"WHERE Address = 'GM Dimitrov';");
-			query.executeUpdate();
-		} catch (SQLException ex) {
-			OutputException.sqlErrorInfo(ex);
-		}	
+		InsertingData.executeStatement(conn,"UPDATE Location\n" + 
+				"SET Address = 'Geo Milev'\n" + 
+				"WHERE Address = 'GM Dimitrov';");
 	}
 
 	public void selectAllLocations() {

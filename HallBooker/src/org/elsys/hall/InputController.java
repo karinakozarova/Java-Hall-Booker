@@ -3,30 +3,13 @@ package org.elsys.hall;
 import java.util.Scanner;
 
 public class InputController {
-	/*
-	 * tested and working:
-	 * 3
-	 * 4
-	 * 7
-	 * 8
-	 * 9
-	 * 13
-	 * 17
-	 * 18
-	 * quit
-	 * data
-	 * tested and problematic:
-	 * scanenr problems:
+	/* problematic:
+	 * 12
 	 * 2
 	 * 5
-	 * 6
-	 * 10
-	 * 12
-	 * 14
-	 * 15
-	 * 16
 	 * tested and maybe working(no data to make sure working):
 	 * 11
+	 * 14
 	 */
 	static void inputController(Integer input,Scanner sc) 
 	{				
@@ -35,15 +18,13 @@ public class InputController {
 		System.out.print("You selected: ");
 		if(input == 1) 
 		{
-			/*Scanner sc = new Scanner(System.in);
-
 			System.out.println("Add your hall");	
+			/*
 			System.out.println("Hall name?");
 			String hallname = sc.nextLine();
 
 			System.out.println("Rent price?");
 			Double rentPrice = sc.nextDouble();
-
 
 			System.out.println("Buy price?");
 			Double buyPrice = sc.nextDouble();
@@ -52,7 +33,7 @@ public class InputController {
 			String location = sc.nextLine();
 			System.out.println("State?");
 			String state = sc.nextLine();
-			*/
+			 */
 			String hallname = "Test";
 			Double rentPrice = 10.0d;
 			Double buyPrice = 10.0d;
@@ -60,7 +41,6 @@ public class InputController {
 			String state = "Free";
 
 			h.createHall( hallname, rentPrice, buyPrice, location, state);
-			//sc.close();
 		} 
 		else if(input == 2) 
 		{
@@ -132,7 +112,7 @@ public class InputController {
 			/*
 			System.out.println("Enter hall name that should be deleted!");
 			String hallname = sc.nextLine();
-			*/
+			 */
 			String hallname = "HallOfHalls";
 			h.deleteHallByName(hallname); 
 		} else if(input == 11) {

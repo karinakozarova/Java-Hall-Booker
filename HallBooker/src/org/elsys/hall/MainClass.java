@@ -2,7 +2,7 @@ package org.elsys.hall;
 import java.util.Scanner;
 
 public class MainClass {
-	
+
 	public static void main(String[] args) 
 	{
 		System.out.println("Welcome to Hall Booker!");
@@ -13,8 +13,12 @@ public class MainClass {
 		while(true) 
 		{
 			menu();
-		
-			String input = scan.nextLine();
+			String input = null;
+			try {
+				input = scan.nextLine();
+			} catch(java.util.NoSuchElementException | java.lang.NullPointerException e) {
+				System.out.println("COUGHT");
+			}
 			if(input.equals("quit")) break;
 			if(input.equals("data")) {
 				Hall h = new Hall();

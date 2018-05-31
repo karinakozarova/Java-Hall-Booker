@@ -17,7 +17,8 @@ public class States {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
-	
+
+	/** deletes state from States table where certain Name*/
 	public static void deleteStateByName(Connection conn,String StateName) {
 		try {
 			PreparedStatement query = conn.prepareStatement("Delete from States where StateName = ?");
@@ -27,7 +28,8 @@ public class States {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
-	
+
+	/** updates StateName*/
 	public static void updateStates(Connection conn, String is,String willbe) {
 		try {
 			PreparedStatement query = 
@@ -39,8 +41,8 @@ public class States {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
-	
-	
+
+
 	/** adds all logical states to the States table **/
 	public static void addStates(Connection conn) {
 
@@ -57,20 +59,14 @@ public class States {
 			OutputException.sqlErrorInfo(ex);
 		}		
 	}
-	
+
 
 	/** adds new logical state to the States table **/
 	public static void addState(Connection conn,String state) {
 		System.out.println("State is: " + state);
 		String queryString = "Insert Into States(StateName) Values('" + state + "');";
 		System.out.println(queryString);
-		try {
-			PreparedStatement query = conn.prepareStatement(queryString);
-			query.setString(1, state);
-			query.executeUpdate();
-		} catch (SQLException ex) {
-			OutputException.sqlErrorInfo(ex);
-		}		
+		InsertingData.executeStatement(conn, queryString);	
 	}
 
 	/** returns all states that were added at the States table **/
