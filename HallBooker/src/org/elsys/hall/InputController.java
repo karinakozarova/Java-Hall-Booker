@@ -5,13 +5,18 @@ import java.util.Scanner;
 public class InputController {
 	/*
 	 * tested and working:
+	 * 4
 	 * 7
 	 * 8
+	 * 9
+	 * 13
+	 * 17
+	 * quit
+	 * data
 	 * tested and problematic:
 	 * scanenr problems:
 	 * 2
 	 * 3
-	 * 4
 	 * 5
 	 * 6
 	 * 10
@@ -19,21 +24,17 @@ public class InputController {
 	 * 15
 	 * 16
 	 * tested and maybe working(no data to make sure working):
-	 * 9
 	 * 11
 	 * 12
-	 * 13
 	 */
 	static void inputController(Integer input) 
 	{			
-
 		System.out.print("You selected: ");
 		if(input == 1) 
 		{
-			Scanner sc = new Scanner(System.in);
+			/*Scanner sc = new Scanner(System.in);
 
 			System.out.println("Add your hall");	
-			Hall h = new Hall();
 			System.out.println("Hall name?");
 			String hallname = sc.nextLine();
 
@@ -46,13 +47,21 @@ public class InputController {
 
 			System.out.println("Location?");
 			String location = sc.nextLine();
+			*/
+			String hallname = "Test";
+			Double rentPrice = 10.0d;
+			Double buyPrice = 10.0d;
+			String location = "Test";
+
 			/*		
 			System.out.println("State?");
 			String state = sc.nextLine();
 			 */
 			String state = "Free";
+			Hall h = new Hall();
+
 			h.createHall( hallname, rentPrice, buyPrice, location, state);
-			sc.close();
+			//sc.close();
 		} 
 		else if(input == 2) 
 		{
@@ -61,7 +70,7 @@ public class InputController {
 			Hall h = new Hall();
 			System.out.println("Hall name?");
 			String hallname = sc.next();
-			//String hallname = "Universiada";
+			// String hallname = "Universiada";
 			h.checkStatusOfHallByName(hallname);
 			sc.close();
 		}
@@ -77,13 +86,9 @@ public class InputController {
 		} 
 		else if(input == 4) 
 		{
-			System.out.println("Get hall location");
-			Scanner sc = new Scanner(System.in);
+			System.out.println("Get halls and their location");
 			Hall h = new Hall();
-			System.out.println("Hall name?");
-			String hallname = sc.nextLine();
-			h.getHallLocation(hallname);
-			sc.close();
+			h.getHallLocation();
 		} 
 		else if(input == 5) 
 		{			
@@ -132,7 +137,7 @@ public class InputController {
 			Hall states = new Hall();
 			states.printHallStates();
 		} else if(input == 8) {
-			System.out.println("Create database tables");
+			System.out.println("Remove all data from the tables");
 			Hall states = new Hall();
 			states.createDatabaseTables();
 		}else if(input == 9) {
@@ -170,6 +175,10 @@ public class InputController {
 			System.out.println("Delete Hall State");
 			Hall halls = new Hall();
 			halls.deleteHallState(); 
+		}else if(input == 17) {
+			System.out.println("17 - Print all Hall names");
+			Hall halls = new Hall();
+			halls.allHallNames(); 
 		}
 	}
 

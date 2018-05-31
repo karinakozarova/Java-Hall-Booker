@@ -2,6 +2,8 @@ package org.elsys.hall;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -40,12 +42,42 @@ public class Hall {
 	}
 
 	// READ
+	public void allHallNames() {
+		ResultSet result;
+		System.out.println("The HALL NAMES are:");
+		try {
+			PreparedStatement query = conn.prepareStatement("Select * from Hall");
+			result = query.executeQuery();
+			while( result.next() ) {
+				String name = result.getString("Name");
+				System.out.println(name);
+			}
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}
+	}
+	
 	public void checkStatusOfHallByName(String name) {
 		//TODO implement this
 	}
 	
-	public void getHallLocation(String name)  {
-		//TODO implement this
+	public void getHallLocation()  {
+		ResultSet result;
+		try {
+			PreparedStatement query = 
+					conn.prepareStatement("SELECT h.Name, l.Address FROM Hall h\n" + 
+					"INNER JOIN Location l ON h.LocationId = l.Id;");
+			result = query.executeQuery();
+			while( result.next() ) {
+				String name = result.getString("Name");
+				String Address = result.getString("Address");
+
+				System.out.println(name + " is located at " + Address);
+			}
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}
+		
 	}
 
 	public void showBoughtHalls() {

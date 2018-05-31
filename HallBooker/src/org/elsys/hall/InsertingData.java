@@ -46,6 +46,7 @@ public class InsertingData {
 		executeStatement(conn,"INSERT INTO Hall VALUES (2, 'JUMBO', 30.99, 3000.00, 2, 2);\n");
 		executeStatement(conn,"INSERT INTO Hall VALUES (3, 'METRO', 9.49, 5555.99, 2, 2);");
 		executeStatement(conn,"INSERT INTO Hall VALUES (4, 'HallOfHalls', 0.01, 10000.00, 3, 3);");
+
 	}
 
 	public static void executeStatement(Connection conn,String queryString) {
