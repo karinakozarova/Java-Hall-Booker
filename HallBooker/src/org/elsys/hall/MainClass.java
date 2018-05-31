@@ -25,7 +25,7 @@ public class MainClass {
 
 			try{
 				Integer inputInt = Integer.parseInt(input);
-				if(inputInt > 0) InputController.inputController(inputInt);	
+				if(inputInt > 0) InputController.inputController(inputInt,scan);	
 			}
 			catch(NumberFormatException e)
 			{
@@ -57,6 +57,8 @@ public class MainClass {
 		System.out.println("18 - Delete Universiada Hall");
 		System.out.println("19 - Change GM Dimitrov to Geo Milev");
 		System.out.println("20 - Print all locations");
+		System.out.println("21 - Show all halls that have been bought");
+
 		System.out.println("quit - Exit app");
 		System.out.println("data - Insert sample data");
 	}

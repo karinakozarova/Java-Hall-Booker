@@ -70,4 +70,21 @@ public class HallsStatistics {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
+
+	public static void showBoughtHalls(Connection conn) {
+		ResultSet result;
+		try {
+			PreparedStatement query = 
+					conn.prepareStatement("SELECT h.Name FROM Hall h\n" + 
+							"INNER JOIN State s ON h.StateId = s.Id\n" + 
+							"WHERE s.StateName = 'Bought';");
+			result = query.executeQuery();
+			while(result.next()) {
+				String name = result.getString("Name");
+				System.out.println(name);
+			}
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}
+	}
 }

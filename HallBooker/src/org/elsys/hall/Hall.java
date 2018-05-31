@@ -43,15 +43,37 @@ public class Hall {
 		return null;
 	}
 
-	// CREATE
-	public void createHall(String hallname,Double rentPrice,Double buyPrice,String location,String state) {
-		// TODO create query string from params 
-		String querystring = null;
-		Integer id = getMaxHallID();
-		
+	public void checkStatusOfHallByName(String name) {
+		//TODO implement this
+		System.out.println("UNIMPLEMENTED");
+	}
+
+	public void changeHallName(String currentHallName,String futureHallName) {
+		//TODO implement this
+		System.out.println("UNIMPLEMENTED");
+
+	}
+
+	public void changeHallRentPrice(String currentHallName,Integer price) {
+		//TODO implement this
+		System.out.println("UNIMPLEMENTED");
+
+	}
+
+	public void changeHallBuyPrice(String currentHallName,Integer price) {
+		//TODO implement this
+		System.out.println("UNIMPLEMENTED");
+
+	}
+
+	public void changeHallLocation(String currentHallName,String location) {
+		//TODO implement this
+		System.out.println("UNIMPLEMENTED");
+
+	}
+	
+	public Integer getLocationIdFromString(String location) {
 		Integer locationID = 1;
-		Integer stateId = 1;
-		
 		try {
 			String str = "SELECT l.Id FROM Location l WHERE Address = '"
 					+ location + "'";
@@ -64,8 +86,13 @@ public class Hall {
 			}
 		} catch (SQLException ex) {
 			OutputException.sqlErrorInfo(ex);
-		}	
-		
+		}
+		return locationID;
+	}
+	
+	public Integer getStateIdFromString(String state) {
+		Integer stateId = 1;
+
 		try {
 			String str = "SELECT s.Id FROM States s WHERE StateName = '"
 					+ state + "'";
@@ -79,7 +106,17 @@ public class Hall {
 		} catch (SQLException ex) {
 			OutputException.sqlErrorInfo(ex);
 		}
-		querystring = "INSERT INTO Hall VALUES (" 
+		return stateId;
+	}
+	
+	// CREATE
+	public void createHall(String hallname,Double rentPrice,Double buyPrice,String location,String state) {
+		Integer id = getMaxHallID();
+		
+		Integer locationID = getLocationIdFromString(location);
+		Integer stateId = getStateIdFromString(state);
+		
+		String querystring = "INSERT INTO Hall VALUES (" 
 		+ (id + 1) + ", '" + hallname+ " ', "
 		+ rentPrice + ", " +buyPrice + ", "
 		+ locationID + ", " + stateId + ");";
@@ -113,9 +150,11 @@ public class Hall {
 		}
 	}
 
-	public void checkStatusOfHallByName(String name) {
-		//TODO implement this
+	
+	public void showBoughtHalls() {
+		HallsStatistics.showBoughtHalls(conn);		
 	}
+
 
 	public void getHallLocation()  {
 		ResultSet result;
@@ -136,9 +175,6 @@ public class Hall {
 
 	}
 
-	public void showBoughtHalls() {
-		//TODO implement this
-	}
 
 	public void showAllInfo() {
 		HallsStatistics.showAllInfo(conn);
@@ -154,7 +190,6 @@ public class Hall {
 
 	// UPDATE
 	public void rentHall()  {
-		//TODO implement this
 		InsertingData.executeStatement(conn,"INSERT INTO HallUser VALUES\n" + 
 				"(\n" + 
 				"7, \n" + 
@@ -175,21 +210,7 @@ public class Hall {
 
 	}
 
-	public void changeHallName(String currentHallName,String futureHallName) {
-		//TODO implement this
-	}
 
-	public void changeHallRentPrice(String currentHallName,Integer price) {
-		//TODO implement this
-	}
-
-	public void changeHallBuyPrice(String currentHallName,Integer price) {
-		//TODO implement this
-	}
-
-	public void changeHallLocation(String currentHallName,String location) {
-		//TODO implement this
-	}
 
 	public void updateHallState() {
 		Scanner sc = new Scanner(System.in);
