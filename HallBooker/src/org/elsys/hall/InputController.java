@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class InputController {
 	/*
 	 * tested and working:
+	 * 3
 	 * 4
 	 * 7
 	 * 8
@@ -16,16 +17,15 @@ public class InputController {
 	 * tested and problematic:
 	 * scanenr problems:
 	 * 2
-	 * 3
 	 * 5
 	 * 6
 	 * 10
+	 * 12
 	 * 14
 	 * 15
 	 * 16
 	 * tested and maybe working(no data to make sure working):
 	 * 11
-	 * 12
 	 */
 	static void inputController(Integer input) 
 	{			

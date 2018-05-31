@@ -159,8 +159,14 @@ public class Hall {
 	public void deleteHallState() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter state that you want to delete");
-		String StateName = sc.next();
-		States.deleteStateByName(conn, StateName);
+		if(sc.hasNextLine()) {
+			String StateName = sc.nextLine();
+			System.out.println(StateName);
+			States.deleteStateByName(conn, StateName);
+			System.out.println("DELETED");
+		}else {
+			System.out.println("scanner doesnt have next line");
+		}
 		sc.close();
 	}
 	public void insertData() {

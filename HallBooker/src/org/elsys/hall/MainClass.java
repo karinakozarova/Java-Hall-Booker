@@ -13,6 +13,7 @@ public class MainClass {
 		while(true) 
 		{
 			menu();
+		
 			String input = scan.nextLine();
 			if(input.equals("quit")) break;
 			if(input.equals("data")) {
