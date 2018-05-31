@@ -12,6 +12,7 @@ public class InputController {
 	 * 9
 	 * 13
 	 * 17
+	 * 18
 	 * quit
 	 * data
 	 * tested and problematic:
@@ -172,10 +173,14 @@ public class InputController {
 			Hall halls = new Hall();
 			halls.deleteHallState(); 
 		}else if(input == 17) {
-			System.out.println("17 - Print all Hall names");
+			System.out.println("Print all Hall names");
 			Hall halls = new Hall();
 			halls.allHallNames(); 
-		}
+		}else if(input == 18) {
+			System.out.println("Delete Universiada hall");
+			Hall halls = new Hall();
+			halls.deleteUniversiada();
+		} 
 	}
 
 }

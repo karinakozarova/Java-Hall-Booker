@@ -20,7 +20,7 @@ public class Hall {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
-	
+
 	public Hall() {
 		connectToDatabase();
 	}
@@ -31,11 +31,11 @@ public class Hall {
 		String querystring = null;
 		InsertingData.insertHallData(conn, querystring);
 	}
-	
+
 	public void createDatabaseTables() {
 		Database.initializeDatabase(); // creates all the tables
 	}
-	
+
 	public void newHallState() {
 		Scanner sc = new Scanner(System.in);
 		String stateInput = sc.nextLine();
@@ -58,17 +58,17 @@ public class Hall {
 			OutputException.sqlErrorInfo(ex);
 		}
 	}
-	
+
 	public void checkStatusOfHallByName(String name) {
 		//TODO implement this
 	}
-	
+
 	public void getHallLocation()  {
 		ResultSet result;
 		try {
 			PreparedStatement query = 
 					conn.prepareStatement("SELECT h.Name, l.Address FROM Hall h\n" + 
-					"INNER JOIN Location l ON h.LocationId = l.Id;");
+							"INNER JOIN Location l ON h.LocationId = l.Id;");
 			result = query.executeQuery();
 			while( result.next() ) {
 				String name = result.getString("Name");
@@ -79,21 +79,21 @@ public class Hall {
 		} catch (SQLException ex) {
 			OutputException.sqlErrorInfo(ex);
 		}
-		
+
 	}
 
 	public void showBoughtHalls() {
 		//TODO implement this
 	}
-	
+
 	public void showAllInfo() {
 		HallsStatistics.showAllInfo(conn);
 	}
-	
+
 	public void printHallStates() {
 		States.getAllStates(conn); // outputs the states table
 	}
-	
+
 	public void showFreeHalls() {
 		HallsStatistics.showFreeHalls(conn);
 	}
@@ -118,7 +118,7 @@ public class Hall {
 			OutputException.sqlErrorInfo(ex);
 		}	
 
-		
+
 	}
 
 	public void changeHallName(String currentHallName,String futureHallName) {
@@ -136,7 +136,7 @@ public class Hall {
 	public void changeHallLocation(String currentHallName,String location) {
 		//TODO implement this
 	}
-	
+
 	public void updateHallState() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter current state of the state that you want to change!");
@@ -172,5 +172,15 @@ public class Hall {
 	public void insertData() {
 		InsertingData.insertAll(conn);
 	}
-	
+
+	public void deleteUniversiada() {
+		try {
+			PreparedStatement query =
+					conn.prepareStatement("DELETE FROM Hall\n" + 
+							"WHERE Name = 'Universiada';");
+			query.executeUpdate();
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}	
+	}
 }
