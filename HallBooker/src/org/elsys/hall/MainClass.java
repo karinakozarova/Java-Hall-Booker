@@ -56,7 +56,7 @@ public class MainClass {
 		System.out.println("17 - Print all Hall names");
 		System.out.println("18 - Delete Universiada Hall");
 		System.out.println("19 - Change GM Dimitrov to Geo Milev");
-		
+		System.out.println("20 - Print all locations");
 		System.out.println("quit - Exit app");
 		System.out.println("data - Insert sample data");
 	}

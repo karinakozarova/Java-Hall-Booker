@@ -184,6 +184,10 @@ public class InputController {
 			System.out.println("Change GM Dimitrov to Geo Milev");
 			Hall halls = new Hall();
 			halls.renameGMDimitrov();
+		}else if(input == 20) {
+			System.out.println("20 - Print all locations");
+			Hall halls = new Hall();
+			halls.selectAllLocations();
 		}
 	}
 

@@ -195,4 +195,20 @@ public class Hall {
 			OutputException.sqlErrorInfo(ex);
 		}	
 	}
+
+	public void selectAllLocations() {
+		ResultSet result;
+
+		try {
+			PreparedStatement query = conn.prepareStatement("Select * from Location");
+			result = query.executeQuery();
+			while( result.next() ) {
+				String Address = result.getString("Address");
+				System.out.print(Address + ", ");
+			}
+			System.out.println();
+		} catch (SQLException ex) {
+			OutputException.sqlErrorInfo(ex);
+		}			
+	}
 }
