@@ -138,7 +138,7 @@ public class InputController {
 			h.allHallNames(); 
 		}else if(input == 18) {
 			System.out.println("Delete Universiada hall");
-			h.deleteUniversiada();
+			h.deleteHallByName("Universiada");
 		} else if(input == 19) {
 			System.out.println("Change GM Dimitrov to Geo Milev");
 			h.renameGMDimitrov();
